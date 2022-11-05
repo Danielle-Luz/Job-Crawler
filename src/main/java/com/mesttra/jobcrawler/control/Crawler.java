@@ -37,12 +37,12 @@ public class Crawler {
     public Job createJobFromElement (Element element, String jobName) {
     	String company = element.select(".job__company").text();
     	String typeOfWork = element.select(".jobview__container__status").text();
-    	String link = element.select(".job__vacancy").attr("href");
+    	String link = "https://www.trabalhabrasil.com.br/" + element.select(".job__vacancy").attr("href");
     	
     	Elements jobDetails = element.getElementsByClass("job__detail");
     	String location = jobDetails.get(0).text();
     	
-    	String salary = "";
+    	String salary = "Salário não informado";
     	
     	boolean hasSalaryInfo = jobDetails.size() == 2;
     	
@@ -50,6 +50,10 @@ public class Crawler {
     		salary = jobDetails.get(0).text();
     		
     		location = jobDetails.get(1).text();
+    	}
+    	
+    	if (typeOfWork.isEmpty()) {
+    		typeOfWork = "Não informado";
     	}
     	
     	Job foundJob = new Job(company, jobName, typeOfWork, location, salary, link);

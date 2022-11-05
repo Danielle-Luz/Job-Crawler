@@ -37,7 +37,7 @@ public class Crawler {
     public Job createJobFromElement (Element element, String jobName) {
     	String company = element.select(".job__company").text();
     	String typeOfWork = element.select(".jobview__container__status").text();
-    	String link = "https://www.trabalhabrasil.com.br/" + element.select(".job__vacancy").attr("href");
+    	String link = "https://www.trabalhabrasil.com.br/"  + element.select(".job__vacancy").attr("href");
     	
     	Elements jobDetails = element.getElementsByClass("job__detail");
     	String location = jobDetails.get(0).text();

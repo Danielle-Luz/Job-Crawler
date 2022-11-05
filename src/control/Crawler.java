@@ -16,7 +16,7 @@ public class Crawler {
         this.url = url;
     }
 
-    public List<Element> getPageDevJobs() {
+    public Elements getPageDevJobs() {
         Elements devJobs = new Elements();
 
         try {

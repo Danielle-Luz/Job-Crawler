@@ -34,8 +34,39 @@ public class Crawler {
         this.url = parsedUrl;
     }
 
-    public Elements getPageDevJobs() {
-        Elements devJobs = new Elements();
+    public Job createJobFromElement (Element element, String jobName) {
+    	String company = element.select(".job__company").text();
+    	String typeOfWork = element.select(".jobview__container__status").text();
+    	String location = ""/*element.getElementsByClass("job__detail").get(1).text()*/;
+    	String salaryText = element.getElementsByClass("job__detail").get(0).text();
+    	String link = element.select(".job__vacancy").attr("href");
+    	
+    	//double salaryNumber = Double.parseDouble(salaryText);
+    	
+    	Job foundJob = new Job(company, jobName, typeOfWork, location, 0, link);
+    	
+    	return foundJob;
+    }
+    
+    public String returnObjectAsJson (Job objeto) {
+    	String json = "";
+    	
+    	ObjectMapper parser = new ObjectMapper();
+    	
+    	
+    		try {
+    			System.out.println(objeto.getCompany());
+				json = parser.writeValueAsString(objeto);
+			} catch (JsonProcessingException e) {
+				System.out.println(e.getMessage());
+			}
+    	
+    	
+    	return json;
+    }
+    
+    public List<String> getPageDevJobs() {
+        List<String> devJobs = new ArrayList<>();
 
         try {
             Document page = Jsoup.connect(this.url).get();
@@ -49,17 +80,12 @@ public class Crawler {
                 Matcher matcher = pattern.matcher(jobName);
 
                 if (matcher.find()) {
-                	String company = element.select(".job__company").text();
-                	String typeOfWork = element.select(".jobview__container__status").text();
-                	String location = ""/*element.getElementsByClass("job__detail").get(1).text()*/;
-                	String salaryText = element.getElementsByClass("job__detail").get(0).text();
-                	String link = element.select(".job__vacancy").attr("href");
                 	
-                	//double salaryNumber = Double.parseDouble(salaryText);
+                	Job foundJob = createJobFromElement(element, jobName);
                 	
-                	//Job foundJob = new Job(company, jobName, typeOfWork, location, 0, link);
-
-                	devJobs.add(element);
+                	String json = returnObjectAsJson(foundJob);
+                	
+                	devJobs.add(json);
                 }
             }
 
@@ -68,9 +94,5 @@ public class Crawler {
         }
 
         return devJobs;
-    }
-    
-    public static void main (String[] args) {
-    	
     }
 }

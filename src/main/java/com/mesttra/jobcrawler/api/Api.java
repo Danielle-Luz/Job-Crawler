@@ -19,7 +19,7 @@ public class Api {
 
     @PostMapping
     @ResponseBody
-    public Elements getJobsFromUrl (@RequestBody String url) {
+    public List<String> getJobsFromUrl (@RequestBody String url) {
         Crawler crawler = new Crawler(url);
         return crawler.getPageDevJobs();
     }

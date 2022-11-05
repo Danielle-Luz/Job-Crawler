@@ -1,9 +1,8 @@
 package api;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-
-
-@Controller
+import org.springframework.web.bind.annotation.RequestMapping;
 
 public class Api {
 

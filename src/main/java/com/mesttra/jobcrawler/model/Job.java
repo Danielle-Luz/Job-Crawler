@@ -5,7 +5,7 @@ public class Job {
 	String jobName;
 	String location;
 	String typeOfWork;
-	Double salary;
+	String salary;
 	String link;
 	
 	public Job(String company, String jobName, String typeOfWork, String location, double salary, String link) {

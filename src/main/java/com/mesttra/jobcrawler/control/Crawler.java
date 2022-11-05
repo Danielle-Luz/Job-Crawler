@@ -37,36 +37,32 @@ public class Crawler {
     public Job createJobFromElement (Element element, String jobName) {
     	String company = element.select(".job__company").text();
     	String typeOfWork = element.select(".jobview__container__status").text();
-    	String location = ""/*element.getElementsByClass("job__detail").get(1).text()*/;
-    	String salaryText = element.getElementsByClass("job__detail").get(0).text();
     	String link = element.select(".job__vacancy").attr("href");
     	
-    	//double salaryNumber = Double.parseDouble(salaryText);
+    	Elements jobDetails = element.getElementsByClass("job__detail");
+    	String location = jobDetails.get(0).text();
     	
-    	Job foundJob = new Job(company, jobName, typeOfWork, location, 0, link);
+    	double salary = 0;
+    	
+    	boolean hasSalaryInfo = jobDetails.size() == 2;
+    	
+    	if (hasSalaryInfo) {
+    		String numberSalaryInfo = jobDetails.get(0).text().split(" ")[1];
+    		String numberWithoutPoint = numberSalaryInfo.replace(".", "");
+    		String numberWithoutComma = numberWithoutPoint.replace(",", ".");
+    		
+    		salary = Double.parseDouble(numberWithoutComma);
+    		
+    		location = jobDetails.get(1).text();
+    	}
+    	
+    	Job foundJob = new Job(company, jobName, typeOfWork, location, salary, link);
     	
     	return foundJob;
     }
     
-    public String returnObjectAsJson (Job objeto) {
-    	String json = "";
-    	
-    	ObjectMapper parser = new ObjectMapper();
-    	
-    	
-    		try {
-    			System.out.println(objeto.getCompany());
-				json = parser.writeValueAsString(objeto);
-			} catch (JsonProcessingException e) {
-				System.out.println(e.getMessage());
-			}
-    	
-    	
-    	return json;
-    }
-    
-    public List<String> getPageDevJobs() {
-        List<String> devJobs = new ArrayList<>();
+    public List<Job> getPageDevJobs() {
+        List<Job> devJobs = new ArrayList<>();
 
         try {
             Document page = Jsoup.connect(this.url).get();
@@ -83,9 +79,7 @@ public class Crawler {
                 	
                 	Job foundJob = createJobFromElement(element, jobName);
                 	
-                	String json = returnObjectAsJson(foundJob);
-                	
-                	devJobs.add(json);
+                	devJobs.add(foundJob);
                 }
             }
 

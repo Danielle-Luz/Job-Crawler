@@ -21,7 +21,7 @@ public class Crawler {
 
     public Crawler(String url) {
     	ObjectMapper parser = new ObjectMapper();
-    	
+    
     	String parsedUrl = "";
     	
     	try {

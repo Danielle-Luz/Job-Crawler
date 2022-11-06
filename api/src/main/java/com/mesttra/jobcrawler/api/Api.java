@@ -5,6 +5,7 @@ import com.mesttra.jobcrawler.model.Job;
 
 import com.mesttra.jobcrawler.api.Email;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,25 @@ public class Api {
         
         return foundJobs;
     }
+	
+	@RequestMapping(value = "/email", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping
+    @ResponseBody
+    @CrossOrigin(origins = "*")
+	public HashMap<String, Boolean> getEmail (@RequestBody String email) {
+		HashMap<String, Boolean> status = new HashMap<>();
+		
+		try {
+			sendEmail.setEmail(email);
+			
+			status.put("sucess", true);
+			
+			return status;
+		} catch (Exception ex) {
+			status.put("sucess", false);
+			
+			return status;
+		}
+	}
 }
 

@@ -1,5 +1,9 @@
 package com.mesttra.jobcrawler.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mesttra.jobcrawler.model.Job;
 
 import java.util.List;
@@ -14,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class Email {
 	private boolean receivesEmails = false;
-	private String email = "cocadalaranja@gmail.com";
+	private String email = "";
 	
 	 @Autowired
 	private JavaMailSender sender;
@@ -249,5 +253,18 @@ public class Email {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public void setEmail(String email) throws Exception {
+		ObjectMapper parser = new ObjectMapper();
+    	JsonNode node;
+    	
+    	String emailData = "";
+    	
+    	node = parser.readTree(email);
+    	emailData = node.get("email").asText();
+		
+    	this.email = emailData;
+    	this.receivesEmails = true;
 	}
 }

@@ -51,7 +51,7 @@ public class Crawler {
     	Elements jobDetails = element.getElementsByClass("job__detail");
     	String location = jobDetails.get(0).text();
     	
-    	String salary = "Salário não informado";
+    	String salary = "";
     	
     	boolean hasSalaryInfo = jobDetails.size() == 2;
     	
@@ -59,10 +59,6 @@ public class Crawler {
     		salary = jobDetails.get(0).text();
     		
     		location = jobDetails.get(1).text();
-    	}
-    	
-    	if (typeOfWork.isEmpty()) {
-    		typeOfWork = "Não informado";
     	}
     	
     	Job foundJob = new Job(id, description, stack, company, jobName, typeOfWork, location, salary, link);

@@ -18,7 +18,7 @@ public class JobCrawlerApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/trabalhos").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/trabalhos").allowedOrigins("*");
 			}
 		};
 	}

@@ -5,3 +5,7 @@
 .fit-height {
   height: fit-content;
 }
+
+.full-height {
+  height: 100%;
+}

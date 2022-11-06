@@ -7,10 +7,6 @@
   padding: 0;
 }
 
-body {
-  padding: var(--spacing-1) var(--spacing-3);
-}
-
 :root {
   --color-brand-1: #2D6ED0;
   --color-brand-2: #275eb1;
@@ -36,4 +32,5 @@ body {
 
 .container {
   max-width: 820px;
+  padding: var(--spacing-1) var(--spacing-3);
 }

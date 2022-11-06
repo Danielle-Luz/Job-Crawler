@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="src/styles/cards.css">
     <link rel="stylesheet" href="src/styles/flex.css">
     <link rel="stylesheet" href="src/styles/forms.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
     <link rel="stylesheet" href="src/styles/globals.css">
     <link rel="stylesheet" href="src/styles/texts.css">
     <link rel="stylesheet" href="src/styles/sizes.css">
   </head>
-  <body class="align-center d-flex full-width justify-center">
+  <body class="align-center d-flex flex-column full-width justify-center">
     <div class="container full-width">
       <header class="full-width">
         <h1 class="text-center title title-size-1">Job Crawler</h1>
         <form class="d-flex form">
-          <input class="input-1 text-size-1" placeholder="Digite a url..." type="url">
+          <input class="input input-1 text-size-1" placeholder="Digite a url..." type="url">
           <button class="button-brand text-size-1" type="button">Buscar</button>
         </form>
       </header>
@@ -91,5 +92,21 @@
         </article>
       </main>
     </div>
+    <footer class="align-center d-flex flex-column footer full-width justify-center">
+      <div class="align-center container d-flex flex-column full-width justify-center">
+        <article class="footer-text">
+          <h2 class="title title-size-2">Receber relatório no email?</h2>
+          <p class="text text-size-1">
+            Informe seu email e clique no botão abaixo caso queira receber um relatório das vagas buscadas no email.
+          </p>
+        </article>
+        <form class="d-flex flex-column form full-width">
+          <input class="full-height input input-2 text-size-1" type="email">
+          <button class="button-brand full-height text-size-1" type="button">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,5 +1,4 @@
-.input-1 {
-  background-color: transparent;
+.input {
   border: none;
   border-radius: var(--radius-1);
   font-weight: 500;
@@ -7,15 +6,28 @@
   width: 100%;
 }
 
+.input-1 {
+  background-color: transparent;
+}
+
 .input-1::placeholder {
   color: var(--color-grey-3)
 }
 
-.form {
+.input-2 {
+  padding: 8px var(--spacing-4);
+}
+
+header .form {
   background-color: var(--color-grey-6);
   border-radius: var(--radius-1);
   padding: var(--spacing-4) var(--spacing-3);
-  width: 100%;
+}
+
+.footer .form {
+  gap: var(--spacing-4);
+  height: 45px;
+  padding: 0;
 }
 
 .button-brand {

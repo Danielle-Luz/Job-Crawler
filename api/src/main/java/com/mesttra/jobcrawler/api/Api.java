@@ -3,8 +3,6 @@ package com.mesttra.jobcrawler.api;
 import com.mesttra.jobcrawler.control.*;
 import com.mesttra.jobcrawler.model.Job;
 
-import com.mesttra.jobcrawler.api.Email;
-
 import java.util.HashMap;
 import java.util.List;
 

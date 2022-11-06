@@ -8,10 +8,10 @@ public class Job {
 	String jobName;
 	String location;
 	String typeOfWork;
-	String salary;
+	double salary;
 	String link;
 	
-	public Job(int id, String description, String stack, String company, String jobName, String typeOfWork, String location, String salary, String link) {
+	public Job(int id, String description, String stack, String company, String jobName, String typeOfWork, String location, double salary, String link) {
 		this.id= id;
 		this.description = description;
 		this.stack = stack;
@@ -51,7 +51,7 @@ public class Job {
 		return typeOfWork;
 	}
 
-	public String getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 

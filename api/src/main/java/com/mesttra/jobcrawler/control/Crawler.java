@@ -21,7 +21,7 @@ public class Crawler {
 
     public Crawler(String url) {
     	ObjectMapper parser = new ObjectMapper();
-    	
+    
     	String parsedUrl = "";
     	
     	try {
@@ -34,11 +34,20 @@ public class Crawler {
         this.url = parsedUrl;
     }
 
-    public Job createJobFromElement (Element element, String jobName) {
+    public Job createJobFromElement (Element element, String jobName, int id) {
+    	String description = element.select(".job__description").text();
     	String company = element.select(".job__company").text();
     	String typeOfWork = element.select(".jobview__container__status").text();
     	String link = "https://www.trabalhabrasil.com.br"  + element.select(".job__vacancy").attr("href");
     	
+    	Pattern pattern = Pattern.compile("front end|front-end|frontend|back end|back-end|backend|full stack|full-stack|fullstack", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(jobName);
+    	String stack = "";
+    	
+    	if (matcher.find()) {
+    		stack = matcher.group();
+    	}
+    			
     	Elements jobDetails = element.getElementsByClass("job__detail");
     	String location = jobDetails.get(0).text();
     	
@@ -56,7 +65,7 @@ public class Crawler {
     		typeOfWork = "Não informado";
     	}
     	
-    	Job foundJob = new Job(company, jobName, typeOfWork, location, salary, link);
+    	Job foundJob = new Job(id, description, stack, company, jobName, typeOfWork, location, salary, link);
     	
     	return foundJob;
     }
@@ -68,6 +77,8 @@ public class Crawler {
             Document page = Jsoup.connect(this.url).get();
 
             List<Element> elementsList = page.body().getElementsByClass("jg__job");
+            
+            int index = 0;
 
             for (Element element : elementsList) {
                 String jobName = element.select(".job__name").text();
@@ -77,9 +88,11 @@ public class Crawler {
 
                 if (matcher.find()) {
                 	
-                	Job foundJob = createJobFromElement(element, jobName);
+                	Job foundJob = createJobFromElement(element, jobName, index);
                 	
                 	devJobs.add(foundJob);
+                	
+                	index++;
                 }
             }
 

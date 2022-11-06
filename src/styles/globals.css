@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+div.container {
+  gap: calc(var(--spacing-3)*2);
+}
+
 :root {
   --color-brand-1: #2D6ED0;
   --color-brand-2: #2962b8;

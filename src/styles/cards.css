@@ -1,5 +1,4 @@
 .card-container {
-  margin-block: calc(var(--spacing-2)*2);
   flex-wrap: wrap;
   gap: var(--spacing-1);
 }

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="src/styles/slider.css">
   </head>
   <body class="align-center d-flex flex-column full-width justify-center">
-    <div class="container full-width">
+    <div class="container d-flex flex-column full-width">
       <header class="full-width">
         <h1 class="text-center title title-size-1">Job Crawler</h1>
         <form class="d-flex form">
@@ -26,6 +26,10 @@
         </form>
       </header>
       <div class="full-width">
+        <dl class="d-flex full-width justify-between">
+          <dt class="title text-size-1">Faixa salarial</dt>
+          <dd id="text text-size-1 salary-value">R$ 8000</dd>
+        </dl>
         <input class="styled-slider slider-progress full-width" type="range" id="salary-range">
       </div>
       <main class="card-container justify-center d-flex full-width">

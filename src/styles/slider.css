@@ -113,3 +113,7 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
 input[type=range].styled-slider.slider-progress:hover::-ms-fill-lower {
   background: #0061C3;
 }
+
+dl {
+  margin-bottom: var(--spacing-4);
+}

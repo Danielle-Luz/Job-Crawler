@@ -12,7 +12,8 @@ body {
 }
 
 :root {
-  --color-brand: #2D6ED0;
+  --color-brand-1: #2D6ED0;
+  --color-brand-2: #275eb1;
   --color-grey-1: #1E1E1E;
   --color-grey-2: #495057;
   --color-grey-3: #868E96;

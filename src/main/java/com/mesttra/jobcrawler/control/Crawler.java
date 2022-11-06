@@ -51,12 +51,16 @@ public class Crawler {
     	Elements jobDetails = element.getElementsByClass("job__detail");
     	String location = jobDetails.get(0).text();
     	
-    	String salary = "";
+    	double salary = 0;
     	
     	boolean hasSalaryInfo = jobDetails.size() == 2;
     	
     	if (hasSalaryInfo) {
-    		salary = jobDetails.get(0).text();
+    		String numberSalaryInfo = jobDetails.get(0).text().split(" ")[1];
+    		String numberWithoutPoint = numberSalaryInfo.replace(".", "");
+    		String numberWithoutComma = numberWithoutPoint.replace(",", ".");
+
+    		salary = Double.parseDouble(numberWithoutComma);
     		
     		location = jobDetails.get(1).text();
     	}

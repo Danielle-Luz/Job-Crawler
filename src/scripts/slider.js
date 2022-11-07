@@ -32,6 +32,10 @@ function getJobsBySalary (salary) {
 export function addEventToSlide () {
   const inputRange = document.getElementById("salary-range");
 
+  const salaryValue = document.getElementById("salary-value");
+
+  salaryValue.innerText = "R$ " + inputRange.value;
+
   inputRange.addEventListener("input", () => {
     getJobsBySalary(inputRange.value);
 

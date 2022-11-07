@@ -1,5 +1,9 @@
+import { getJobs } from "./requests.js";
+
 export function renderCards (foundJobs) {
   const cardContainer = document.querySelector(".card-container");
+
+  cardContainer.innerHTML = "";
 
   if (array.length == 0) {
     const emptyMessage = "<h2 class='empty-message title title-size-2'>Insira uma nova url para ver alguma vaga</h2>"
@@ -34,4 +38,22 @@ export function renderCards (foundJobs) {
 
     cardContainer.insertAdjacentHTML("beforeend", jobHtml);
   }
+}
+
+export function renderFoundJobs () {
+  const searchButton = document.getElementById("search");
+  
+  searchButton.addEventListener("click", async () => {
+    const inputUrl = document.getElementById("url-value");
+
+    const url = inputUrl.value;
+
+    const domain = url.split(".")[1];
+
+    if (domain == "trabalhabrasil") {
+      const foundJobs = await getJobs(url);
+
+      renderCards(foundJobs);
+    }
+  })
 }

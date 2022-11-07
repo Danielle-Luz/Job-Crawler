@@ -1,3 +1,4 @@
+import { rendered } from "./render.js";
 import { sendEmail } from "./requests.js";
 
 export function sendJobRelatoryToEmail () {
@@ -10,12 +11,14 @@ export function sendJobRelatoryToEmail () {
 
     const email = inputEmail.value;
 
-    const status = await sendEmail(email);
-
-    if (status.sucess) {
-      console.log("enviou");
-    } else {
-      console.log(":(");
+    if (email && rendered) {
+      const status = await sendEmail(email);
+  
+      if (status.sucess) {
+        console.log("enviou");
+      } else {
+        console.log(":(");
+      }
     }
   })
 }

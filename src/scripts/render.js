@@ -1,5 +1,7 @@
 import { getJobs } from "./requests.js";
 
+export let rendered = false;
+
 export function renderCards (foundJobs) {
   const cardContainer = document.querySelector(".card-container");
 
@@ -10,6 +12,8 @@ export function renderCards (foundJobs) {
 
     cardContainer.innerHTML = emptyMessage;
   } else {
+    rendered = true;
+
     foundJobs.forEach( job => {
       const jobHtml = `
       <article class="card card-content d-flex flex-column full-width">

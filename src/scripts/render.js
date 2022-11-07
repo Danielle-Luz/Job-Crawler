@@ -5,7 +5,7 @@ export function renderCards (foundJobs) {
 
   cardContainer.innerHTML = "";
 
-  if (array.length == 0) {
+  if (foundJobs.length == 0) {
     const emptyMessage = "<h2 class='empty-message title title-size-2'>Insira uma nova url para ver alguma vaga</h2>"
 
     cardContainer.innerHTML = emptyMessage;
@@ -27,16 +27,16 @@ export function renderCards (foundJobs) {
           </main>
           <footer class="card-content d-flex flex-column justify-between">
             <ul class="align-center card-content d-flex">
-              ${job.salary != 0 ? '<li class="card-label fit-height text-size-2 text-center">' + job.salary + '</li>' : ""}
+              ${job.salary != 0 ? '<li class="card-label fit-height text-size-2 text-center"> R$ ' + job.salary.toFixed(0) + '</li>' : ""}
               <li class="card-label fit-height text-size-2 text-center">São Paulo</li>
             </ul>
             <a class="button-brand text-center" href="${job.link}">Acessar a vaga</a>
           </footer>
         </article>
       `;
-    });
 
-    cardContainer.insertAdjacentHTML("beforeend", jobHtml);
+      cardContainer.insertAdjacentHTML("beforeend", jobHtml);
+    });
   }
 }
 

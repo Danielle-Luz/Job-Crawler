@@ -198,6 +198,8 @@ public class Email {
 				+ "      <main class=\"card-container full-width\">";
 		
 		for (Job job : foundJobs) {
+			String salary = job.getSalary() != 0 ? "R$" + job.getSalary() : "Salário não informado";
+			
 			String jobHtml = "<article class=\"card card-content d-flex flex-column full-width\">\r\n"
 					+ "          <header>\r\n"
 					+ "            <h2 class=\"title title-size-2\">"+ job.getJobName()+"</h2>\r\n"
@@ -212,7 +214,7 @@ public class Email {
 					+ "          </main>\r\n"
 					+ "          <footer class=\"card-content d-flex flex-column justify-between\">\r\n"
 					+ "            <ul class=\"align-center card-content d-flex\">\r\n"
-					+ "              <li class=\"card-label fit-height text-size-2 text-center\">"+job.getSalary()+"</li>\r\n"
+					+ "              <li class=\"card-label fit-height text-size-2 text-center\">"+salary+"</li>\r\n"
 					+ "              <li class=\"card-label fit-height text-size-2 text-center\">"+job.getTypeOfWork()+"</li>\r\n"
 					+ "            </ul>\r\n"
 					+ "            <a class=\"button-brand text-center\" href=\""+job.getLink()+"\">Acessar a vaga</a>\r\n"

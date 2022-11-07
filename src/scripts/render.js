@@ -43,7 +43,9 @@ export function renderCards (foundJobs) {
 export function renderFoundJobs () {
   const searchButton = document.getElementById("search");
   
-  searchButton.addEventListener("click", async () => {
+  searchButton.addEventListener("click", async event => {
+    event.preventDefault();
+
     const inputUrl = document.getElementById("url-value");
 
     const url = inputUrl.value;

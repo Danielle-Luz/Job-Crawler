@@ -1,15 +1,30 @@
 package com.mesttra.jobcrawler.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Job {
+	@JsonProperty("id")
 	int id;
+	@JsonProperty("description")
 	String description;
+	@JsonProperty("stack")
 	String stack;
+	@JsonProperty("company")
 	String company;
+	@JsonProperty("jobName")
 	String jobName;
+	@JsonProperty("loaction")
 	String location;
+	@JsonProperty("typeOfWork")
 	String typeOfWork;
+	@JsonProperty("salary")
 	double salary;
+	@JsonProperty("link")
 	String link;
+	
+	public Job () {
+		
+	}
 	
 	public Job(int id, String description, String stack, String company, String jobName, String typeOfWork, String location, double salary, String link) {
 		this.id= id;

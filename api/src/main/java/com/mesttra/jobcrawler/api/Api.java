@@ -1,5 +1,9 @@
 package com.mesttra.jobcrawler.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mesttra.jobcrawler.control.*;
 import com.mesttra.jobcrawler.model.Job;
 
@@ -62,6 +66,37 @@ public class Api {
 			
 			return status;
 		}
+	}
+	
+	@RequestMapping(value = "/sendJobs", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
+    @ResponseBody
+    @CrossOrigin(origins = "*")
+	public HashMap<String, Boolean>  storeJobs (@RequestBody String jobs) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		HashMap<String, Boolean> status = new HashMap<>();
+		
+		try {
+			List<Job> filteredJobs = objectMapper.readValue(jobs, new TypeReference<List<Job>>(){});
+			
+			jobList = filteredJobs;
+			
+			System.out.println("aaa");
+			
+			status.put("stored", true);
+		} catch (JsonMappingException e) {
+			status.put("stored", false);
+			
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			status.put("stored", false);
+			e.printStackTrace();
+		}
+		
+		jobList = null;
+		
+		return status;
 	}
 }
 

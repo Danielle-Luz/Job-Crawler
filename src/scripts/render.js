@@ -62,7 +62,9 @@ export function renderFoundJobs () {
 
       if (response.ok) {
         const foundJobs = await response.json();
-  
+
+        localStorage.setItem("foundJobs", JSON.stringify(foundJobs));
+
         renderCards(foundJobs);
       }
     }

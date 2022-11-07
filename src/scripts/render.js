@@ -51,9 +51,14 @@ export function renderFoundJobs () {
     const domain = url.split(".")[1];
 
     if (domain == "trabalhabrasil") {
-      const foundJobs = await getJobs(url);
+      
+      const response = await getJobs(url);
 
-      renderCards(foundJobs);
+      if (response.ok) {
+        const foundJobs = await response.json();
+  
+        renderCards(foundJobs);
+      }
     }
   })
 }

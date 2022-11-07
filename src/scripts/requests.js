@@ -9,9 +9,7 @@ export async function getJobs (url) {
     body: urlJson
   })
 
-  const response = await request.json();
-
-  return response;
+  return request;
 }
 
 export async function sendEmail (email) {

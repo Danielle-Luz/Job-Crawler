@@ -20,6 +20,7 @@ public class Api {
 	
     @Autowired
     Email sendEmail;
+    List<Job> jobList = null;
 	
 	
 	@RequestMapping(value = "/trabalhos", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,9 +31,7 @@ public class Api {
         Crawler crawler = new Crawler(url);
         List<Job> foundJobs = crawler.getPageDevJobs();
         
-        if (sendEmail.receivesEmails()) {
-        	sendEmail.sendFoundJobsRelatory(foundJobs);
-        }
+        jobList = foundJobs;
         
         return foundJobs;
     }
@@ -45,11 +44,19 @@ public class Api {
 		HashMap<String, Boolean> status = new HashMap<>();
 		
 		try {
-			sendEmail.setEmail(email);
-			
-			status.put("sucess", true);
-			
-			return status;
+			if (jobList != null) {
+				sendEmail.setEmail(email);
+				
+				status.put("sucess", true);
+				
+				if (sendEmail.receivesEmails()) {
+					sendEmail.sendFoundJobsRelatory(jobList);
+				}
+				
+				return status;				
+			} else {
+				throw new Exception();
+			}
 		} catch (Exception ex) {
 			status.put("sucess", false);
 			
